@@ -16,8 +16,9 @@ class Users extends CI_Controller
 		// js
 		$this->layout->js('/js/jquery-2.2.2.min.js');
 		$this->layout->js('/js/bootstrap.min.js');
-		$this->layout->js('/js/script.js');
 		$this->layout->js('/js/jquery-ui.js');
+		$this->layout->js('/js/lodash.min.js');
+		$this->layout->js('/js/script.js');
 		// css
 		$this->layout->css('/css/style.css');
 		$this->layout->css('/css/bootstrap.min.css');

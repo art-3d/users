@@ -91,7 +91,7 @@ class User_model extends CI_Model
 		$this->db->from('user');
 		$this->db->join('skill', 'user.id = skill.user_id');
 
-		if ( !empty($search_field) && !empty($search) ) $this->db->where($search_field, $search);
+		if ( !empty($search_field) && !empty($search) ) $this->db->like($search_field, $search);
 		if ( !empty($date_from) ) $this->db->where('created >', strtotime($date_from) );
 		if ( !empty($date_until) ) $this->db->where('created <', strtotime($date_until) );
 		$this->db->group_by('user.id');

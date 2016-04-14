@@ -1,0 +1,29 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th><a href="#name">Имя</a></th>
+			<th><a href="#last_name">Фамилия</a></th>
+			<th><a href="#middle_name">Отчество</a></th>
+			<th><a href="#email">Почта</a></th>
+			<th><a href="#skills">Навыки</a></th>
+			<th><a href="#experience">Опыт</a></th>
+			<th><a href="#comment">Комментарий</a></th>
+			<th><a href="#created">Создан</a></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% users.forEach(function(user) { %>
+			<tr>
+				<td><%-user.name%></td>
+				<td><%-user.last_name%></td>
+				<td><%-user.middle_name%></td>
+				<td><%-user.email%></td>
+				<td><%-user.skills%></td>
+				<td><%-user.experience%></td>
+				<td><%-user.comment%></td>
+				<td><%-user.created%></td>
+			</tr>
+		<% }); %>
+	</tbody>
+</table>

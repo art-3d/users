@@ -68,7 +68,7 @@ $(document).ready(function(event) {
 		$(this).submit();
 	});
 
-	$('form').on('keydown', function(event){		
+	$('input').on('keydown', function(event){		
 		if (event.which == 13) {
 			event.preventDefault();
 			$('input[type=submit]').click();
@@ -96,8 +96,9 @@ $(document).ready(function(event) {
 			$.ajax({
 				url: '/template/experience.html',
 				dataType: 'html',
-			}).done(function(data){
-				$('input[name=search]').after(data);				
+				success: function(data){
+					$('input[name=search]').after(data);
+				},
 			});
 
 		} else {
@@ -110,6 +111,10 @@ $(document).ready(function(event) {
 		event.preventDefault();
 
 		getFilteredUsers();
+	});
+
+	$(document).on('click', 'th>a', function(event){
+		setTimeout(getFilteredUsers, 10);
 	});
 
 	// DELETE
@@ -137,6 +142,9 @@ function getFilteredUsers() {
 		search_field: search_field,
 	};
 
+	console.log(filter);
+	console.log(buffer_filter);
+
 	if ( isEqual(filter, buffer_filter) == true ) return false;
 
 	filter = buffer_filter;
@@ -151,7 +159,15 @@ function getFilteredUsers() {
 		data: filter,
 		dataType: 'json',
 		success: function(data) {
-			console.log(data);
+			$.ajax({
+				url: 'template/users_table.html',
+				dataType: 'html',
+				success: function(template){
+					var table = _.template(template)(data);
+					$('table').replaceWith(table);
+					$('.pager').parent().remove();
+				},
+			})
 		},
 	});
 }
